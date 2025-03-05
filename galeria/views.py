@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from galeria.models import Fotografia
 
 dados = {
     1:  {"nome":"Nebulosa de Carina", "legenda":"webtelescope.oirb/NASA/JamesWebb"},
@@ -6,7 +7,8 @@ dados = {
 }
 
 def index(request):
-    return render(request, 'galeria/index.html', {"cards": dados})
+    fotografias = Fotografia.objects.all()
+    return render(request, 'galeria/index.html', {"cards": fotografias})
 
 def imagem(request):
     return render(request, 'galeria/imagem.html')
